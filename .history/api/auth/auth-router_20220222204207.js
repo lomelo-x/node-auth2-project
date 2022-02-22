@@ -50,7 +50,6 @@ router.post('/login', checkUsernameExists, (req, res, next) => {
 	if (bcrypt.compareSync(req.body.password, req.user.password)) {
     const token = buildToken(req.user)
     res.json({
-      status: 201,
       message: `${req.user.username} is back!`,
       token, 
     })
@@ -73,5 +72,4 @@ function buildToken(user) {
   }
   return jwt.sign(payload, JWT_SECRET, options)
 }
-
 module.exports = router;

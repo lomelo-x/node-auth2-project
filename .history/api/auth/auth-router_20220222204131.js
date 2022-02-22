@@ -50,7 +50,6 @@ router.post('/login', checkUsernameExists, (req, res, next) => {
 	if (bcrypt.compareSync(req.body.password, req.user.password)) {
     const token = buildToken(req.user)
     res.json({
-      status: 201,
       message: `${req.user.username} is back!`,
       token, 
     })
@@ -65,13 +64,12 @@ router.post('/login', checkUsernameExists, (req, res, next) => {
 function buildToken(user) {
 	const payload = {
 		subject: user.user_id,
+		role_name: user.role_name,
 		username: user.username,
-    role_name: user.role_name,
 	};
   const options = {
     expiresIn: '1d',
   }
   return jwt.sign(payload, JWT_SECRET, options)
 }
-
 module.exports = router;
