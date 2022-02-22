@@ -1,7 +1,6 @@
 const { JWT_SECRET } = require('../secrets'); // use this secret!
 const { find, findBy, findById, add } = require('../users/users-model');
 const jwt = require('jsonwebtoken');
-
 const restricted = (req, res, next) => {
 	/*
     If the user does not provide a token in the Authorization header:
@@ -16,11 +15,11 @@ const restricted = (req, res, next) => {
       "message": "Token invalid"
     }
 
-    Put the decoded token in the req object, to make life easier for middleware downstream!
+    Put the decoded token in the req object, to make life easier for middlewares downstream!
   */
 	const token = req.headers.authorization;
 	if (!token) {
-		return next({
+		next({
 			status: 401,
 			message: 'Token required',
 		});
@@ -32,8 +31,8 @@ const restricted = (req, res, next) => {
 				message: 'Token invalid',
 			});
 		} else {
-			req.decodedToken = decodedToken;
-			next();
+			req.decodedToken;
+			next(); =
 		}
 	});
 };
