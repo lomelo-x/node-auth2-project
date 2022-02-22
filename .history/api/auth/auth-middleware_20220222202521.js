@@ -1,7 +1,12 @@
 const { JWT_SECRET } = require('../secrets'); // use this secret!
-const { find, findBy, findById, add } = require('../users/users-model');
+const {
+  find,
+  findBy,
+  findById,
+  add,
+} = require('../users/users-model')
 
-const restricted = (req, res, next) => {
+const restricted =  (req, res, next) => {
 	/*
     If the user does not provide a token in the Authorization header:
     status 401
@@ -17,8 +22,8 @@ const restricted = (req, res, next) => {
 
     Put the decoded token in the req object, to make life easier for middlewares downstream!
   */
-	next();
-};
+    next()
+  };
 
 const only = (role_name) => (req, res, next) => {
 	/*
@@ -34,7 +39,7 @@ const only = (role_name) => (req, res, next) => {
 	next();
 };
 
-const checkUsernameExists = async (req, res, next) => {
+const checkUsernameExists = (req, res, next) => {
 	/*
     If the username in req.body does NOT exist in the database
     status 401
@@ -42,20 +47,7 @@ const checkUsernameExists = async (req, res, next) => {
       "message": "Invalid credentials"
     }
   */
-
-	try {
-		const [user] = await findBy({ username: req.body.username });
-		if (!user) {
-			next({
-				status: 401,
-				message: 'Invalid credentials',
-			});
-		} else {
-			req.user = user;
-		}
-	} catch (error) {
-		next(error);
-	}
+    next()
 };
 
 const validateRoleName = (req, res, next) => {
