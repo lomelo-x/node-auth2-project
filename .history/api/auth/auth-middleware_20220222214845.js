@@ -44,7 +44,7 @@ const only = (role_name) => (req, res, next) => {
     inside its payload matching the role_name passed to this function as its argument:
     status 403
     {
-        "message": "This is not for you"
+      "message": "This is not for you"
     }
 
     Pull the decoded token from the req object, to avoid verifying it again!
@@ -64,7 +64,7 @@ const checkUsernameExists = async (req, res, next) => {
     If the username in req.body does NOT exist in the database
     status 401
     {
-        "message": "Invalid credentials"
+      "message": "Invalid credentials"
     }
   */
 
@@ -76,8 +76,7 @@ const checkUsernameExists = async (req, res, next) => {
 				message: 'Invalid credentials',
 			});
 		} else {
-			req.user = user
-			next()
+			req.user = user;
 		}
 	} catch (error) {
 		next(error);

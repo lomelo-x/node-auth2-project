@@ -64,7 +64,7 @@ const checkUsernameExists = async (req, res, next) => {
     If the username in req.body does NOT exist in the database
     status 401
     {
-        "message": "Invalid credentials"
+      "message": "Invalid credentials"
     }
   */
 
@@ -76,8 +76,7 @@ const checkUsernameExists = async (req, res, next) => {
 				message: 'Invalid credentials',
 			});
 		} else {
-			req.user = user
-			next()
+			req.user = user;
 		}
 	} catch (error) {
 		next(error);
