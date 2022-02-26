@@ -59,7 +59,7 @@ const only = (role_name) => (req, res, next) => {
 	}
 };
 
-const checkUsernameExists = async (req, res, next) => {
+const 900checkUsernameExists = async (req, res, next) => {
 	/*
     If the username in req.body does NOT exist in the database
     status 401
@@ -76,8 +76,8 @@ const checkUsernameExists = async (req, res, next) => {
 				message: 'Invalid credentials',
 			});
 		} else {
-			req.user = user;
-			next();
+			req.user = user
+			next()
 		}
 	} catch (error) {
 		next(error);

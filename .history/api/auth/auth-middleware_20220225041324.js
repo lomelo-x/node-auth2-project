@@ -76,8 +76,8 @@ const checkUsernameExists = async (req, res, next) => {
 				message: 'Invalid credentials',
 			});
 		} else {
-			req.user = user;
-			next();
+			req.user = user
+			next()
 		}
 	} catch (error) {
 		next(error);
